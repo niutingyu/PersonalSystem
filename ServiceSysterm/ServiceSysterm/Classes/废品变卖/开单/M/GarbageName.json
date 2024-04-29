@@ -1,0 +1,14 @@
+{
+    "orderName":
+    
+        {
+        "materName":"物品名称",
+        "matal":"参考金属",
+        "count":"物品数量",
+        "nameContent":"",
+        "matalContent":"",
+        "countContent":""
+       
+        }
+     
+}

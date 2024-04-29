@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DEReStockFilterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ubx-PU-ZoK">
+                    <rect key="frame" x="187" y="12" width="1" height="30"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="F6L-Qf-2Pf"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入物料单号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7D3-o9-xzH">
+                    <rect key="frame" x="8" y="7.5" width="173" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="oYd-GY-ETL"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入物料编码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TTq-Ik-ZBc">
+                    <rect key="frame" x="194" y="7.5" width="173" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="akz-oR-K51"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Ubx-PU-ZoK" secondAttribute="bottom" constant="8" id="3KI-Nc-dde"/>
+                <constraint firstItem="Ubx-PU-ZoK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="87S-4U-ROG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TTq-Ik-ZBc" secondAttribute="trailing" constant="8" id="V3y-uf-biL"/>
+                <constraint firstItem="7D3-o9-xzH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="cfd-ne-58d"/>
+                <constraint firstItem="Ubx-PU-ZoK" firstAttribute="leading" secondItem="7D3-o9-xzH" secondAttribute="trailing" constant="6" id="nhW-1V-coi"/>
+                <constraint firstItem="TTq-Ik-ZBc" firstAttribute="leading" secondItem="Ubx-PU-ZoK" secondAttribute="trailing" constant="6" id="phb-FQ-Vdh"/>
+                <constraint firstItem="Ubx-PU-ZoK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="q85-4F-Es1"/>
+                <constraint firstItem="TTq-Ik-ZBc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="stJ-LQ-WCO"/>
+                <constraint firstItem="7D3-o9-xzH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uUC-Wb-ESV"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,24 @@
+platform :ios, '9.0'
+
+target 'ServiceSysterm' do
+
+    
+    
+     pod 'Masonry'
+    
+     pod 'AFNetworking'
+     pod 'MJExtension'
+     pod 'MJRefresh'
+    
+     pod 'SVProgressHUD'
+     pod 'IQKeyboardManager'
+     #pod 'HTHorizontalSelectionList'
+
+    # pod 'SDWebImage'
+    pod 'YYCache'
+    #pod 'Pgyer'
+         
+      pod 'JCore', '2.1.4-noidfa' 
+      pod 'JPush', '3.2.4-noidfa'
+     
+      end

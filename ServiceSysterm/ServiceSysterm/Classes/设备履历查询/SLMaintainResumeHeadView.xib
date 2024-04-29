@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="SCT-bK-jDS" customClass="SLMaintainResumeHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgz-IA-vrb">
+                    <rect key="frame" x="8" y="19.5" width="39.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="VfZ-fA-Gec"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zt8-mj-lkC">
+                    <rect key="frame" x="187.5" y="20.5" width="39.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eui-X2-ITk">
+                    <rect key="frame" x="366.5" y="19.5" width="39.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Q3u-f3-xKl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.32525598999999999" green="0.80145186189999995" blue="0.97635740039999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="UEV-b5-sax" firstAttribute="trailing" secondItem="Eui-X2-ITk" secondAttribute="trailing" constant="8" id="8a6-ZN-3zA"/>
+                <constraint firstItem="pgz-IA-vrb" firstAttribute="centerY" secondItem="UEV-b5-sax" secondAttribute="centerY" id="CXX-6E-gGI"/>
+                <constraint firstItem="Eui-X2-ITk" firstAttribute="centerY" secondItem="UEV-b5-sax" secondAttribute="centerY" id="YDF-zc-lBh"/>
+                <constraint firstItem="Zt8-mj-lkC" firstAttribute="centerY" secondItem="UEV-b5-sax" secondAttribute="centerY" id="jUO-sm-69n"/>
+                <constraint firstItem="Zt8-mj-lkC" firstAttribute="centerX" secondItem="UEV-b5-sax" secondAttribute="centerX" id="qbi-9V-jVY"/>
+                <constraint firstItem="pgz-IA-vrb" firstAttribute="leading" secondItem="UEV-b5-sax" secondAttribute="leading" constant="8" id="scp-WE-vd3"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="UEV-b5-sax"/>
+            <connections>
+                <outlet property="basicMessageLabel" destination="pgz-IA-vrb" id="ebW-Bf-XPh"/>
+                <outlet property="maintainCountLabel" destination="Zt8-mj-lkC" id="g1X-7k-Lm4"/>
+                <outlet property="maintianTimeLabel" destination="Eui-X2-ITk" id="5Tt-pU-Q4h"/>
+            </connections>
+            <point key="canvasLocation" x="-36" y="81"/>
+        </view>
+    </objects>
+</document>

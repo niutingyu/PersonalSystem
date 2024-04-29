@@ -1,0 +1,32 @@
+
+[
+    {
+      "name":"紧急通过",
+      "icon":"tongguo"
+    },
+    {
+        "name": "IQC退回",
+        "icon": "nopass"
+    },
+    {
+        "name":"IQC审核",
+        "icon": "shenhe"
+    },
+    {
+        "name":"录入检验结果",
+        "icon":"luru"
+    },
+    {
+        "name": "编辑",
+        "icon": "luru"
+    },
+    {
+        "name": "查看",
+        "icon": "chakan"
+    },
+    {
+        "name":"预览报告",
+        "icon":"chakan"
+    }
+   
+    ]

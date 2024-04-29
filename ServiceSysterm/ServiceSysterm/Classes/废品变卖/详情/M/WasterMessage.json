@@ -1,0 +1,41 @@
+   
+    [
+        {
+            "name":"开单人员",
+            "content":""
+        },
+        {
+            "name":"变卖单号",
+            "content":""
+        },
+        {
+            "name":"开单时间",
+            "content":""
+        },
+        {
+            "name":"单状态",
+            "content":""
+        },
+        {
+            "name":"厂商",
+            "content":""
+        },
+        {
+            "name":"接收人",
+            "content":""
+        },
+        {
+            "name":"付款方式",
+            "content":""
+        },
+        {
+            "name":"结算方式",
+            "content":""
+        },
+        {
+            "name":"联系方式",
+            "content":""
+        }
+    ]
+   
+

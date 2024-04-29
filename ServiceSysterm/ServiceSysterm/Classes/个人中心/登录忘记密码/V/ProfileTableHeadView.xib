@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileTableHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="ZK6-3R-dcs">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0X-pF-dWi">
+                    <rect key="frame" x="170" y="25" width="35" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="qcG-7v-9w2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13400908900" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlb-GN-bSe">
+                    <rect key="frame" x="140.5" y="54" width="94" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="5nK-HG-nMg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZK6-3R-dcs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IN4-Xs-g4M"/>
+                <constraint firstItem="w0X-pF-dWi" firstAttribute="centerX" secondItem="tlb-GN-bSe" secondAttribute="centerX" id="KIV-Ts-fHx"/>
+                <constraint firstAttribute="trailing" secondItem="ZK6-3R-dcs" secondAttribute="trailing" id="O2N-PL-X79"/>
+                <constraint firstItem="ZK6-3R-dcs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QxG-Ne-asM"/>
+                <constraint firstItem="w0X-pF-dWi" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="TIe-AW-w3J"/>
+                <constraint firstAttribute="bottom" secondItem="ZK6-3R-dcs" secondAttribute="bottom" id="V9t-dd-bBA"/>
+                <constraint firstItem="tlb-GN-bSe" firstAttribute="top" secondItem="w0X-pF-dWi" secondAttribute="bottom" constant="8" id="clZ-CC-Dge"/>
+                <constraint firstItem="w0X-pF-dWi" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="p6J-UC-MdF"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mobileLab" destination="tlb-GN-bSe" id="PQM-pn-dsT"/>
+                <outlet property="nameLab" destination="w0X-pF-dWi" id="kBv-sX-ipT"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="Image" width="375" height="170.5"/>
+    </resources>
+</document>

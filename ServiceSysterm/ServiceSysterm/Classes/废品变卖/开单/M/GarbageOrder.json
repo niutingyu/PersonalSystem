@@ -1,0 +1,36 @@
+{
+    "orderList":
+    
+        [
+            {
+              "name":"开单人",
+              "place":"请选择开单人",
+              "content":""
+              
+              
+            },
+            {
+                "name":"销售时间",
+                "place":"请选择销售时间",
+                "content":""
+            },
+            {
+                "name":"厂商",
+                "place":"请选择厂商",
+                "content":""
+            },
+            {
+                "name":"接收人",
+                "place":"请选择接收人",
+                "content":""
+            },
+            {
+                "name":"联系方式",
+                "place":"请选择联系方式",
+                "content":""
+            }
+        ]
+       
+}
+
+

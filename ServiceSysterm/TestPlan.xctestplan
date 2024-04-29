@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "49769B55-32BE-402B-A36E-9BBD270B7984",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ServiceSysterm.xcodeproj",
+        "identifier" : "1AEC0CB0226AB709000BDB81",
+        "name" : "ServiceSystermTests"
+      }
+    }
+  ],
+  "version" : 1
+}

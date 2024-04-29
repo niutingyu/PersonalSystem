@@ -1,0 +1,76 @@
+//
+//  ServiceSystem.pch
+//  ServiceSysterm
+//
+//  Created by Andy on 2019/4/20.
+//  Copyright © 2019 SLPCB. All rights reserved.
+//
+
+#ifndef ServiceSystem_pch
+#define ServiceSystem_pch
+
+#import <AFNetworking.h>
+#import <SVProgressHUD.h>
+#import <JPUSHService.h>
+#import <Masonry.h>
+#import <MJExtension.h>
+#import <MJRefresh.h>
+#import <YYCache.h>
+
+#import "HttpTool.h"
+#import "HttpURL.h"
+#import "Nsstring+Category.h"
+#import "UITableView+AddForPlaceholder.h"
+#import "Units.h"
+#import "MacroDefine.h"
+#import "UILabel+ChangeDefaultFont.h"
+
+
+
+#define kScreenWidth    CGRectGetWidth([UIScreen mainScreen].bounds)
+
+#define kScreenHeight   CGRectGetHeight([UIScreen mainScreen].bounds)
+
+#define RGBA(R,G,B,A) [UIColor colorWithRed:(R/255.0) green:(G/255.0) blue:(B/255.0) alpha:A]
+
+#define kIs_iPhoneX (kScreenWidth == 375.f && kScreenHeight == 812.f)
+#define kStatusBarAndNavigationBarHeight (kIs_iPhoneX ? 88.f : 64.f)
+
+
+//#define kSafeAreaBottomSpaceHeight (kScreenHeight == 812.0 ? 34 : 0)
+//
+//#define kSafeAreaTopSpaceHeight (kScreenHeight == 812.0 ? 44 : 20)
+
+#define KWeakSelf __weak typeof(self) weakSelf = self;
+
+
+#define Loading @"正在加载..."
+
+
+#ifdef DEBUG
+#define debugLog(FORMAT, ...)  fprintf(stderr,"%s:%d \t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define debugLog(FORMAT, ...) nil
+#endif
+
+//#ifdef DEBUG
+//#define debugLog(...) NSLog(__VA_ARGS__)
+//#else
+//#define debugLog(...)
+//#endif
+
+//存取值
+#define kUserDefaults [NSUserDefaults standardUserDefaults]
+#define USERDEFAULT_SET_value(_value_,_key_) [[NSUserDefaults standardUserDefaults] setValue:_value_ forKey:_key_];\
+[[NSUserDefaults standardUserDefaults] synchronize]
+//取值
+#define USERDEFAULT_object(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
+
+
+#define navHeight  (IS_iPhoneX ? 88.0f : 64.0f)
+#define SafeAreaBottomHeight (IS_iPhoneX? 34 : 0)
+#define IS_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define bottomBarHeight 44.0f
+
+#endif /* ServiceSystem_pch */
