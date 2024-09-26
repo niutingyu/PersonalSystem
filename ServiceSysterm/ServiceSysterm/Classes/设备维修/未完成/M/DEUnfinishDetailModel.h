@@ -93,6 +93,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *ReactTime;
 @property (nonatomic,copy)NSString *Status;
 @property (nonatomic,copy)NSString *MaintainFaultName;//故障名称
+@property (nonatomic,copy)NSString *QualityConfirmTime;
+@property (nonatomic,copy)NSString *QualityConfirmUser;
 
 @end
 

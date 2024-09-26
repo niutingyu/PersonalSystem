@@ -580,7 +580,11 @@
         }if (model.OperApplyUserName.length&&model.ApplyFinishTime.length) {
             NSString * str = [self initstring:@"申请验收" content:[NSString stringWithFormat:@"%@(%@)",model.ApplyFinishTime,model.OperApplyUserName]];
             [self.maintainDataArray addObject:str];
-        }if (model.OperFinishUserName.length) {
+        }if(model.QualityConfirmTime.length && model.QualityConfirmUser){
+            NSString *str =[self initstring:@"品质确认" content:[NSString stringWithFormat:@"%@(%@)",model.QualityConfirmTime,model.QualityConfirmUser]];
+            [self.maintainDataArray addObject:str];
+        }
+        if (model.OperFinishUserName.length) {
             NSString * str = [self initstring:@"确认验收" content:[NSString stringWithFormat:@"%@(%@)",model.FinishTime,model.OperFinishUserName]];
             [self.maintainDataArray addObject:str];
         }if (model.ReactTime.length) {
