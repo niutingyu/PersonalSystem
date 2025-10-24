@@ -245,6 +245,10 @@
 #define Function_WriteDisk @"functionWriteDisk"
 
 
+//获取配置项
+#define GetEnumDataItem @"base/enumdataitem/getDataItemByCode"
+
+
 
 
 

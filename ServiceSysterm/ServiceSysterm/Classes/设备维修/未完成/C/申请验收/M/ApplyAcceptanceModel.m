@@ -29,3 +29,9 @@
 
 
 @end
+
+@implementation EnumDataItemModel
+
+
+
+@end

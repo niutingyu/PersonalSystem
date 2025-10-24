@@ -34,4 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *PartsTypeId;
 
 @end
+
+@interface EnumDataItemModel : NSObject
+
+@property (nonatomic,copy) NSString *Code;
+
+@property (nonatomic,copy) NSString *Name;
+@end
 NS_ASSUME_NONNULL_END

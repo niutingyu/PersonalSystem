@@ -26,6 +26,10 @@
 
 @property (nonatomic,strong)NSMutableDictionary * idsMutableDictionary;//选中配件id
 
+@property (nonatomic,strong) NSMutableArray *maintainRsultList;//维修结果
+
+@property (nonatomic,strong) NSMutableArray *machineList;//坏机类型
+
 @end
 
 static NSString * const typeCellId = @"typeCellId";
@@ -42,12 +46,13 @@ static NSString * const progressCellId =@"progressCellId";
     self.title = @"申请验收";
   
    
-    NSArray * titles = @[@"是否人为",@"处理过程",@"故障原因",@"设备配件",@"配件类型",@"设备状态",@"是否更换配件",@"上次更换日期"];
+    NSArray * titles = @[@"是否人为",@"处理过程",@"故障原因",@"设备配件",@"配件类型",@"设备状态",@"是否更换配件",@"上次更换日期",@"坏机类型",@"维修结果"];
     [self.datasource addObjectsFromArray:titles];
     
     //提交
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitObjs)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
 }
 
 
@@ -81,6 +86,10 @@ static NSString * const progressCellId =@"progressCellId";
     NSString * changeDeviceParts = [self.mutableDictionary objectForKey:@"是否更换配件"];
     //上次更换日期
     NSString * changDate = [self.mutableDictionary objectForKey:@"上次更换日期"];
+    
+    NSString *machineStr =[self.mutableDictionary objectForKey:@"坏机类型"];
+    NSString *maintainResultStr =[self.mutableDictionary objectForKey:@"维修结果"];
+    
     NSMutableDictionary * parms = [NSMutableDictionary dictionary];
     [parms setObject:_taskId forKey:@"MaintainTaskId"];
     [parms setObject:[human isEqualToString:@"非人为"]?@"0":@"1" forKey:@"HumanFlag"];
@@ -95,7 +104,9 @@ static NSString * const progressCellId =@"progressCellId";
     [parms setObject:[statusOfDevice isEqualToString:@"带病作业"]?@"1":@"2" forKey:@"FacilityStatus"];
     [parms setObject:changeDeviceParts forKey:@"IsReplace"];
     [parms setObject:changDate forKey:@"LastChangeTime"];
-    debugLog(@"parms === %@",parms);
+    [parms setObject:machineStr forKey:@"FaultType"];
+    [parms setObject:maintainResultStr forKey:@"FixResult"];
+   
     //转为joson
     NSMutableDictionary * jsonParms = [NSMutableDictionary dictionary];
     [jsonParms setObject:[Units dictionaryToJson:parms] forKey:@"Model"];
@@ -132,7 +143,7 @@ static NSString * const progressCellId =@"progressCellId";
     }
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray * placeholds = @[@"点击选择",@"请输入处理过程",@"请输入故障原因",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择"];
+    NSArray * placeholds = @[@"点击选择",@"请输入处理过程",@"请输入故障原因",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择"];
     NSString * tipString = self.datasource[indexPath.row];
     if ([tipString isEqualToString:@"处理过程"]||[tipString isEqualToString:@"故障原因"]) {
         ApplyAcceptanceProgressTableCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCellId];
@@ -185,6 +196,10 @@ static NSString * const progressCellId =@"progressCellId";
             [weakSelf.view endEditing:YES];
         };
         pickview.tag = textField.tag;
+    }else if ([tip isEqualToString:@"坏机类型"]){
+        [self maichineWithIdex:textField.tag tip:tip];
+    }else if ([tip isEqualToString:@"维修结果"]){
+        [self maintainResultWithIdex:textField.tag tip:tip];
     }
     return YES;
 }
@@ -325,6 +340,54 @@ static NSString * const progressCellId =@"progressCellId";
         [Units hiddenHudWithView:weakSelf.view];
     }];
 }
+//坏机类型
+-(void) maichineWithIdex:(NSInteger)index tip:(NSString*)tip{
+    NSMutableDictionary * parms = [NSMutableDictionary dictionary];
+    [parms setObject:@"WXFaultType" forKey:@"code"];
+    KWeakSelf
+    [Units showHudWithText:Loading view:self.view model:MBProgressHUDModeIndeterminate];
+    [HttpTool POST:[GetEnumDataItem getWholeUrl] param:parms success:^(id  _Nonnull responseObject) {
+        [Units hiddenHudWithView:weakSelf.view];
+        if([[responseObject objectForKey:@"status"]integerValue]==0){
+            NSArray * jsons = [Units jsonToArray:responseObject[@"data"]];
+            NSMutableArray *models =[EnumDataItemModel mj_objectArrayWithKeyValuesArray:jsons];
+            for (EnumDataItemModel *model in models) {
+                if(![weakSelf.machineList containsObject:model.Name]){
+                    [weakSelf.machineList addObject:model.Name];
+                }
+            }
+            [weakSelf pickViewWithdatasource:weakSelf.machineList idx:index tip:tip];
+        }
+    
+    } error:^(NSString * _Nonnull error) {
+        [Units hiddenHudWithView:weakSelf.view];
+    }];
+    
+}
+//维修结果
+-(void) maintainResultWithIdex:(NSInteger)index tip:(NSString*)tip{
+    NSMutableDictionary * parms = [NSMutableDictionary dictionary];
+    [parms setObject:@"WXFixResult" forKey:@"code"];
+    KWeakSelf
+    [Units showHudWithText:Loading view:self.view model:MBProgressHUDModeIndeterminate];
+    [HttpTool POST:[GetEnumDataItem getWholeUrl] param:parms success:^(id  _Nonnull responseObject) {
+        [Units hiddenHudWithView:weakSelf.view];
+        if([[responseObject objectForKey:@"status"]integerValue]==0){
+            NSArray * jsons = [Units jsonToArray:responseObject[@"data"]];
+            NSMutableArray *models =[EnumDataItemModel mj_objectArrayWithKeyValuesArray:jsons];
+            for (EnumDataItemModel *model in models) {
+                if(![weakSelf.maintainRsultList containsObject:model.Name]){
+                    [weakSelf.maintainRsultList addObject:model.Name];
+                }
+            }
+            [weakSelf pickViewWithdatasource:weakSelf.maintainRsultList idx:index tip:tip];
+        }
+    
+    } error:^(NSString * _Nonnull error) {
+        [Units hiddenHudWithView:weakSelf.view];
+    }];
+    
+}
 -(NSMutableArray*)troubles{
     if (!_troubles) {
         _troubles = [NSMutableArray array];
@@ -354,5 +417,18 @@ static NSString * const progressCellId =@"progressCellId";
     if (!_idsMutableDictionary) {
         _idsMutableDictionary = [NSMutableDictionary dictionary];
     }return _idsMutableDictionary;
+}
+-(NSMutableArray*) maintainRsultList{
+    if(!_maintainRsultList){
+        _maintainRsultList =[NSMutableArray array];
+        
+    }
+    return _maintainRsultList;
+}
+-(NSMutableArray*) machineList{
+    if(!_machineList){
+        _machineList =[NSMutableArray array];
+    }
+    return  _machineList;
 }
 @end
