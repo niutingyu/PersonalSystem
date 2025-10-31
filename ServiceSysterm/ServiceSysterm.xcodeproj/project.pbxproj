@@ -4693,7 +4693,7 @@
 				CODE_SIGN_ENTITLEMENTS = ServiceSysterm/ServiceSysterm.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7.1.6;
+				CURRENT_PROJECT_VERSION = 7.1.7;
 				DEVELOPMENT_TEAM = AR6JJT98A5;
 				GCC_PREFIX_HEADER = ServiceSysterm/Configure/ServiceSystem.pch;
 				INFOPLIST_FILE = ServiceSysterm/Info.plist;
@@ -4703,7 +4703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.3.9;
+				MARKETING_VERSION = 4.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = SL.RepairSystem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4723,7 +4723,7 @@
 				CODE_SIGN_ENTITLEMENTS = ServiceSysterm/ServiceSysterm.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7.1.6;
+				CURRENT_PROJECT_VERSION = 7.1.7;
 				DEVELOPMENT_TEAM = AR6JJT98A5;
 				GCC_PREFIX_HEADER = ServiceSysterm/Configure/ServiceSystem.pch;
 				INFOPLIST_FILE = ServiceSysterm/Info.plist;
@@ -4733,7 +4733,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.3.9;
+				MARKETING_VERSION = 4.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = SL.RepairSystem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

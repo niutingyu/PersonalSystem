@@ -1070,7 +1070,7 @@
         UITextField * textfield = controller.textFields.firstObject;
         NSMutableDictionary * parms = [NSMutableDictionary dictionary];
         [parms setObject:USERDEFAULT_object(USERID) forKey:@"UserId"];
-        [parms setObject:[self->_controllerType isEqualToString:@"维修保修"]?@"0":@"2" forKey:@"Type"];
+        [parms setObject:@"0" forKey:@"Type"];
         NSMutableDictionary * dict = [NSMutableDictionary dictionary];
         [dict setObject:model.MaintainTaskId forKey:@"MaintainTaskId"];
         [parms setObject:[Units dictionaryToJson:dict] forKey:@"Model"];
