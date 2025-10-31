@@ -110,16 +110,17 @@
       [parms setObject:_factoryId?:@"" forKey:@"FactoryId"];
     }
    
-   // NSDictionary * dict = @{@"UserId":USERDEFAULT_object(USERID),@"Type":@"1"};
+   KWeakSelf
     [HttpTool POST:[DeviceTaskURL getWholeUrl] param:parms success:^(id  _Nonnull responseObject) {
         [Units hiddenHudWithView:self.view];
         if ([[responseObject objectForKey:@"status"] integerValue] == 0) {
             NSArray * arr = [Units jsonToArray:responseObject[@"data"]];
             NSMutableArray * arr1 = [DETaskModel mj_objectArrayWithKeyValuesArray:arr];
-            [self.datasource addObjectsFromArray:arr1];
+            [weakSelf.datasource removeAllObjects];
+            [weakSelf.datasource addObjectsFromArray:arr1];
         }
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
         debugLog(@"- - --%@",responseObject);
     } error:^(NSString * _Nonnull error) {
         [Units hiddenHudWithView:self.view];
