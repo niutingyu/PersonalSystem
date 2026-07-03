@@ -33,7 +33,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MaintainErrorTableCell" bundle:nil] forCellReuseIdentifier:errorCellReusedIdtifire];
     
   
-    NSArray * titles = @[@"故障ID",@"故障原因",@"配件类型"];
+    NSArray * titles = @[@"故障名称",@"故障原因",@"配件类型"];
     [self.datasource addObjectsFromArray:titles];
     //提交
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(sureSelected)];
@@ -155,7 +155,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * tip = self.datasource[indexPath.row];
-    if ([tip isEqualToString:@"故障ID"]) {
+    if ([tip isEqualToString:@"故障名称"]) {
         NSMutableDictionary * parms = [NSMutableDictionary dictionary];
         [parms setObject:_model.FacilityId forKey:@"FacilityId"];
         [Units showHudWithText:Loading view:self.view model:MBProgressHUDModeIndeterminate];
@@ -239,7 +239,7 @@
 -(void)onDoneBtnClick:(ZHPickView *)pickView resultString:(NSString *)resultString resultIndex:(NSInteger)resultIndex{
     NSString * tip = self.datasource[pickView.tag];
     [self.selctedContents setObject:resultString forKey:tip];
-    if ([tip isEqualToString:@"故障ID"]) {
+    if ([tip isEqualToString:@"故障名称"]) {
         [self.selctedContents setObject:self.errorIds[resultIndex] forKey:@"reasonId"];
     }else if ([tip isEqualToString:@"故障原因"]){
         [self.selctedContents setObject:self.errorReasons[resultIndex] forKey:@"reason"];

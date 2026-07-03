@@ -46,7 +46,7 @@ static NSString * const progressCellId =@"progressCellId";
     self.title = @"申请验收";
   
    
-    NSArray * titles = @[@"是否人为",@"处理过程",@"故障原因",@"设备配件",@"配件类型",@"设备状态",@"是否更换配件",@"上次更换日期",@"坏机类型",@"维修结果"];
+    NSArray * titles = @[@"是否人为",@"处理过程",@"故障原因",@"设备配件",@"配件类型",@"设备状态",@"更换配件",@"配件是否正常损耗",@"坏机类型",@"维修结果"];
     [self.datasource addObjectsFromArray:titles];
     
     //提交
@@ -83,9 +83,9 @@ static NSString * const progressCellId =@"progressCellId";
     //设备状态
     NSString * statusOfDevice = [self.mutableDictionary objectForKey:@"设备状态"];
     //是否更换配件
-    NSString * changeDeviceParts = [self.mutableDictionary objectForKey:@"是否更换配件"];
+    NSString * changeDeviceParts = [self.mutableDictionary objectForKey:@"更换配件"];
     //上次更换日期
-    NSString * changDate = [self.mutableDictionary objectForKey:@"上次更换日期"];
+    NSString * changDate = [self.mutableDictionary objectForKey:@"配件是否正常损耗"];
     
     NSString *machineStr =[self.mutableDictionary objectForKey:@"坏机类型"];
     NSString *maintainResultStr =[self.mutableDictionary objectForKey:@"维修结果"];
@@ -103,7 +103,7 @@ static NSString * const progressCellId =@"progressCellId";
     }
     [parms setObject:[statusOfDevice isEqualToString:@"带病作业"]?@"1":@"2" forKey:@"FacilityStatus"];
     [parms setObject:changeDeviceParts forKey:@"IsReplace"];
-    [parms setObject:changDate forKey:@"LastChangeTime"];
+    [parms setObject:changDate forKey:@"FacilityPartsNormalLoss"];
     [parms setObject:machineStr forKey:@"FaultType"];
     [parms setObject:maintainResultStr forKey:@"FixResult"];
    
@@ -132,7 +132,18 @@ static NSString * const progressCellId =@"progressCellId";
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.datasource.count;
+    NSString * changeDeviceParts = [self.mutableDictionary objectForKey:@"更换配件"];
+    if(changeDeviceParts.length >0 && [changeDeviceParts isEqualToString:@"是"]){
+        int tag = [self.datasource indexOfObject:@"更换配件"];
+        if(![self.datasource containsObject:@"配件是否正常损耗"]){
+            [self.datasource insertObject:@"配件是否正常损耗" atIndex:tag+1];
+        }
+        return self.datasource.count;
+    }else{
+        [self.datasource removeObject:@"配件是否正常损耗"];
+        return self.datasource.count;
+    }
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * tip= self.datasource[indexPath.row];
@@ -184,18 +195,20 @@ static NSString * const progressCellId =@"progressCellId";
     }else if ([tip isEqualToString:@"设备状态"]){
         NSArray * titles = @[@"带病作业",@"设备停机"];
         [self pickViewWithdatasource:titles idx:textField.tag tip:tip];
-    }else if ([tip isEqualToString:@"是否更换配件"]){
+    }else if ([tip isEqualToString:@"更换配件"]){
         NSArray * titles = @[@"是",@"否"];
         [self pickViewWithdatasource:titles idx:textField.tag tip:tip];
-    }else if ([tip isEqualToString:@"上次更换日期"]){
-        ZHPickView  * pickview = [[ZHPickView alloc]initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
-        pickview.delegate = self;
-        [pickview show];
-        KWeakSelf
-        pickview.cancelBlock = ^{
-            [weakSelf.view endEditing:YES];
-        };
-        pickview.tag = textField.tag;
+    }else if ([tip isEqualToString:@"配件是否正常损耗"]){
+//        ZHPickView  * pickview = [[ZHPickView alloc]initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+//        pickview.delegate = self;
+//        [pickview show];
+//        KWeakSelf
+//        pickview.cancelBlock = ^{
+//            [weakSelf.view endEditing:YES];
+//        };
+//        pickview.tag = textField.tag;
+        NSArray * titles = @[@"是",@"否"];
+        [self pickViewWithdatasource:titles idx:textField.tag tip:tip];
     }else if ([tip isEqualToString:@"坏机类型"]){
         [self maichineWithIdex:textField.tag tip:tip];
     }else if ([tip isEqualToString:@"维修结果"]){
