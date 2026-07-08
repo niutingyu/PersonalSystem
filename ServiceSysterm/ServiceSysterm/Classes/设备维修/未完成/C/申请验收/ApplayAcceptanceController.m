@@ -84,7 +84,7 @@ static NSString * const progressCellId =@"progressCellId";
     NSString * statusOfDevice = [self.mutableDictionary objectForKey:@"设备状态"];
     //是否更换配件
     NSString * changeDeviceParts = [self.mutableDictionary objectForKey:@"更换配件"];
-    //上次更换日期
+    //配件是否正常损耗
     NSString * changDate = [self.mutableDictionary objectForKey:@"配件是否正常损耗"];
     
     NSString *machineStr =[self.mutableDictionary objectForKey:@"坏机类型"];
@@ -103,7 +103,7 @@ static NSString * const progressCellId =@"progressCellId";
     }
     [parms setObject:[statusOfDevice isEqualToString:@"带病作业"]?@"1":@"2" forKey:@"FacilityStatus"];
     [parms setObject:changeDeviceParts forKey:@"IsReplace"];
-    [parms setObject:changDate forKey:@"FacilityPartsNormalLoss"];
+    [parms setObject:changDate?:@"" forKey:@"FacilityPartsNormalLoss"];
     [parms setObject:machineStr forKey:@"FaultType"];
     [parms setObject:maintainResultStr forKey:@"FixResult"];
    
