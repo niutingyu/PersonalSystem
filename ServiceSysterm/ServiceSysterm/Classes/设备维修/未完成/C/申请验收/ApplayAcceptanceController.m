@@ -46,7 +46,7 @@ static NSString * const progressCellId =@"progressCellId";
     self.title = @"申请验收";
   
    
-    NSArray * titles = @[@"是否人为",@"处理过程",@"故障原因",@"设备配件",@"配件类型",@"设备状态",@"更换配件",@"配件是否正常损耗",@"坏机类型",@"维修结果"];
+    NSArray * titles = @[@"是否人为",@"处理过程",@"故障原因",@"设备状态",@"更换配件",@"配件是否正常损耗",@"坏机类型"];
     [self.datasource addObjectsFromArray:titles];
     
     //提交
@@ -77,14 +77,15 @@ static NSString * const progressCellId =@"progressCellId";
     //故障原因
     NSString * trouble = [self.mutableDictionary objectForKey:@"故障原因"];
     //设备配件
-    NSString * deviceParts = [self.idsMutableDictionary objectForKey:@"设备配件"];
+   // NSString * deviceParts = [self.idsMutableDictionary objectForKey:@"设备配件"];
     //配件类型
-    NSString * typeOfParts = [self.idsMutableDictionary objectForKey:@"配件类型"];
+   // NSString * typeOfParts = [self.idsMutableDictionary objectForKey:@"配件类型"];
     //设备状态
     NSString * statusOfDevice = [self.mutableDictionary objectForKey:@"设备状态"];
     //是否更换配件
     NSString * changeDeviceParts = [self.mutableDictionary objectForKey:@"更换配件"];
     //配件是否正常损耗
+    
     NSString * changDate = [self.mutableDictionary objectForKey:@"配件是否正常损耗"];
     
     NSString *machineStr =[self.mutableDictionary objectForKey:@"坏机类型"];
@@ -95,17 +96,20 @@ static NSString * const progressCellId =@"progressCellId";
     [parms setObject:[human isEqualToString:@"非人为"]?@"0":@"1" forKey:@"HumanFlag"];
     [parms setObject:progress forKey:@"TreatmentProcess"];
     [parms setObject:trouble forKey:@"FaultReasonId"];
-    if (deviceParts.length == 0) {
-        [parms setObject:typeOfParts forKey:@"PartsTypeId"];
-        
-    }else{
-        [parms setObject:deviceParts forKey:@"MaintainFacilityPartsId"];
-    }
+//    if (deviceParts.length == 0) {
+//        [parms setObject:typeOfParts forKey:@"PartsTypeId"];
+//
+//    }else{
+//        [parms setObject:deviceParts forKey:@"MaintainFacilityPartsId"];
+//    }
     [parms setObject:[statusOfDevice isEqualToString:@"带病作业"]?@"1":@"2" forKey:@"FacilityStatus"];
     [parms setObject:changeDeviceParts forKey:@"IsReplace"];
-    [parms setObject:changDate?:@"" forKey:@"FacilityPartsNormalLoss"];
+    if([changeDeviceParts isEqualToString:@"是"]){
+        [parms setObject:changDate?:@"" forKey:@"FacilityPartsNormalLoss"];
+    }
+   
     [parms setObject:machineStr forKey:@"FaultType"];
-    [parms setObject:maintainResultStr forKey:@"FixResult"];
+    [parms setObject:@"已修复" forKey:@"FixResult"];
    
     //转为joson
     NSMutableDictionary * jsonParms = [NSMutableDictionary dictionary];
@@ -154,7 +158,7 @@ static NSString * const progressCellId =@"progressCellId";
     }
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray * placeholds = @[@"点击选择",@"请输入处理过程",@"请输入故障原因",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择",@"点击选择"];
+    NSArray * placeholds = @[@"点击选择",@"请输入处理过程",@"请输入故障原因",@"点击选择",@"点击选择",@"点击选择",@"点击选择"];
     NSString * tipString = self.datasource[indexPath.row];
     if ([tipString isEqualToString:@"处理过程"]||[tipString isEqualToString:@"故障原因"]) {
         ApplyAcceptanceProgressTableCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCellId];

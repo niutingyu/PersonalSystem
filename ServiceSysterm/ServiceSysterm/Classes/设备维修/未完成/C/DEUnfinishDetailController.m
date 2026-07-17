@@ -541,7 +541,7 @@
         NSString * str =[self initstring:@"预计恢复" content:model.PlanStartTime];
         [self.repairMessageArray addObject:str];
     }if (model.OccupyCapacity.length) {
-        NSString * str =[self initstring:@"是否占厂" content:model.OccupyCapacity];
+        NSString * str =[self initstring:@"是否占产" content:model.OccupyCapacity];
         [self.repairMessageArray addObject:str];
     }if (model.HumanFlag.length) {
         NSString * str =[self initstring:@"是否人为" content:model.HumanFlag];
@@ -552,7 +552,14 @@
     }if (model.IsReplace.length) {
         NSString * str =[self initstring:@"更换配件" content:model.IsReplace];
         [self.repairMessageArray addObject:str];
-    }if (model.TreatmentProcess.length) {
+    }if(model.MaterialPartName .length){
+        NSString *str =[self initstring:@"配件类型" content:model.MaterialPartName];
+        [self.repairMessageArray addObject:str];
+    }if(model.FacilityPartsNormalLoss.length){
+        NSString *str =[self initstring:@"配件是否正常损耗" content:model.FacilityPartsNormalLoss];
+        [self.repairMessageArray addObject:str];
+    }
+    if (model.TreatmentProcess.length) {
         NSString * str =[self initstring:@"处理过程" content:model.TreatmentProcess];
         [self.repairMessageArray addObject:str];
     }
@@ -794,6 +801,13 @@
         NSString * string =nil;
         if ([_controllerType isEqualToString:@"设备维修"]) {
           string = [btnTitleArray objectAtIndex:flag];
+            //维修 固定写退单
+            if(flag ==0 || flag ==1 || flag ==2 ||flag ==3 || flag ==5|| flag ==11){
+                if(![_operationArray containsObject:@"退单"]){
+                    [_operationArray addObject:@"退单"];
+                }
+            }
+            
         }else{
             string  = [checkeArray objectAtIndex:flag];
         }
@@ -840,7 +854,7 @@
             [parms setObject:model.MaintainTaskId forKey:@"MaintainTaskId"];
             [parms setObject:USERDEFAULT_object(USERID) forKey:@"UserId"];
             [self getAppointMessage:parms tipString:@"移除指派" typeCheckString:@"维修"];
-        }else if ([tipString isEqualToString:@"暂停维修"]||[tipString isEqualToString:@"退单"]){
+        }else if ([tipString isEqualToString:@"暂停维修"]){
             DEPauseRepairController * controller =[DEPauseRepairController new];
             controller.maintainId = model.MaintainTaskId;
             controller.comeFromController = tipString;
@@ -866,7 +880,10 @@
             };
             
             return;
-        }else if ([tipString isEqualToString:@"确认验收"]||[tipString isEqualToString:@"驳回返修"]){
+        }else if ([tipString isEqualToString:@"退单"]){
+            [self backOrder:model];
+        }
+        else if ([tipString isEqualToString:@"确认验收"]||[tipString isEqualToString:@"驳回返修"]){
             [self sureVertifyAndReMaintainByTip:tipString model:model];
         }else if ([tipString isEqualToString:@"接单"]||[tipString isEqualToString:@"修改故障"]){
             [self maintainAcceptanceByTip:tipString model:model];
@@ -1174,6 +1191,47 @@
         debugLog(@" - -- - -%@",parms);
         [Units showLoadStatusWithString:Loading];
         [HttpTool POST:[AcceptanceURL getWholeUrl] param:parms success:^(id  _Nonnull responseObject) {
+            [Units hideView];
+            [Units showStatusWithStutas:responseObject[@"info"]];
+            [weakSelf.tableView.mj_header beginRefreshing];
+            
+            
+        } error:^(NSString * _Nonnull error) {
+            [Units hideView];
+            [Units showStatusWithStutas:error];
+        }];
+        
+    }]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+-(void)backOrder:(DEUnfinishDetailModel*)model{
+    NSMutableDictionary * parms = [NSMutableDictionary dictionary];
+    [parms setObject:@"1" forKey:@"Type"];
+    KWeakSelf
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"确定退单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [controller addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder =@"备注(必填)";
+    }];
+    [controller addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField * textfield = controller.textFields.firstObject;
+        if (textfield.text.length == 0) {
+            [Units showErrorStatusWithString:@"操作备注不能为空"];
+            [weakSelf presentViewController:controller animated:YES completion:nil];
+            return ;
+        }
+        [parms setObject:model.MaintainTaskId forKey:@"MaintainTaskId"];
+        [parms setObject:USERDEFAULT_object(USERID) forKey:@"UserId"];
+        [parms setObject:textfield.text?:@"" forKey:@"OperateDescribe"];
+       
+        //请求网络
+        debugLog(@" - -- - -%@",parms);
+        [Units showLoadStatusWithString:Loading];
+        
+        [HttpTool POST:[MaintainPauseUrl getWholeUrl] param:parms success:^(id  _Nonnull responseObject) {
             [Units hideView];
             [Units showStatusWithStutas:responseObject[@"info"]];
             [weakSelf.tableView.mj_header beginRefreshing];

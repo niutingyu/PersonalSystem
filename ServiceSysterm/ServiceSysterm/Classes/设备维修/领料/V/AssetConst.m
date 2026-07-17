@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /** 入场出场动画时间 */
-const CGFloat SELAnimationTimeInterval = 0.6f;
+const CGFloat SELAnimationTimeInterval = 0.2f;
 
 /** 更新内容显示字体大小 */
 const CGFloat SELDescriptionFont = 16;

@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *TreatmentProcess;
 @property (nonatomic,copy)NSString *SumMain;// 实际单数：一个保养周期内维修单数实际值
 @property (nonatomic,copy)NSString *MaintainDjbyId;//单ID
+@property (nonatomic,copy)NSString *FacilityPartsNormalLoss;//配件是否正常损耗
+@property (nonatomic,copy)NSString *MaterialPartName;//配件名称
 
 @property (nonatomic,strong)NSMutableArray *LinkmanArray;
 @property (nonatomic,strong)NSMutableArray *MaintainArray;
