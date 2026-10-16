@@ -4698,7 +4698,7 @@
 				GCC_PREFIX_HEADER = ServiceSysterm/Configure/ServiceSystem.pch;
 				INFOPLIST_FILE = ServiceSysterm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "赣州维修";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4728,7 +4728,7 @@
 				GCC_PREFIX_HEADER = ServiceSysterm/Configure/ServiceSystem.pch;
 				INFOPLIST_FILE = ServiceSysterm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "赣州维修";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
